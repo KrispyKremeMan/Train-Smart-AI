@@ -11,7 +11,7 @@ app.use(cors());
 const saved_plans = [];
 
 
-const openai = new OpenAI({apiKey: process.env.API_KEY});
+const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
 let input = ""
 
 
