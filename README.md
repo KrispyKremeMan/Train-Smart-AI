@@ -10,6 +10,8 @@ To run:
 
 Download the code.
 
+In the server folder, create a .env file witht the content "API_KEY = '(provided api key)'"
+
 Open two terminals. CD to the server folder in one and the client folder in the other.
 In the server terminal run "npm run dev"
 In the client terminal run "npm start"
