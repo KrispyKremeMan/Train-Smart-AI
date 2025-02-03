@@ -6,4 +6,13 @@ A simple demographic form is presented at the start, then the user is asked for 
 
 This plan gives the user their goal, example workouts and a brief schedule, a nutrition guide, and some tips/motivation. The user then has the ability to save the workout, which saves their plan to a json file, where it can be accessed again in the plans tab.
 
+To run: 
+
+Download the code.
+
+Open two terminals. CD to the server folder in one and the client folder in the other.
+In the server terminal run "npm run dev"
+In the client terminal run "npm start"
+
+
 Thank you for viewing!
