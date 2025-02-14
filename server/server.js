@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const bodyParser = require('body-parser');
+const port = process.env.PORT || 5000;
 const OpenAI = require("openai");
-require('dotenv').config();
+// require('dotenv').config();
 
 app.use(express.json());
 app.use(cors());
@@ -11,13 +11,17 @@ app.use(cors());
 const saved_plans = [];
 
 
+if (!process.env.OPENAI_API_KEY) {
+    console.error("OPENAI_API_KEY is missing. Please set the environment variable.");
+    process.exit(1);
+  }
 const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
 let input = ""
 
 
 
 app.post('/api', (req,res) =>{
-    input = req.body.input
+    input = req.body.inputa
     res.json({response: req.body.input})
 })
 
@@ -56,6 +60,10 @@ app.get('/get', (req,res) => {
     }
 });
 
-app.listen(5000, ()=>{
-    console.log("Server started on port 5000")
+app.get('/', (req, res) =>{
+    res.send('Welcome to the Train Smart AI API.')
+});
+
+app.listen(port, ()=>{
+    console.log(`Server started on port ${port}`)
 });
