@@ -74,6 +74,7 @@ function QuestionForm() {
             await fetch_chat_response();
         } catch (error){
             console.log("Error fetching AI response:", error);
+            alert("Error Fetching API Response")
         } finally {
             set_is_loading(false);
             
@@ -113,6 +114,7 @@ function QuestionForm() {
 
             } catch (error){
                 console.log("Error fetching AI response:", error);
+                alert("Error Fetching API Response.")
             }
     }        
     }

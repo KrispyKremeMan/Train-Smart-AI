@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/WyattCore/Train-Smart-AI.git/static/css/main.a0796a8d.css",
+    "main.js": "/WyattCore/Train-Smart-AI.git/static/js/main.e8b17c37.js",
+    "static/js/453.419a5d54.chunk.js": "/WyattCore/Train-Smart-AI.git/static/js/453.419a5d54.chunk.js",
+    "static/media/logo.jpg": "/WyattCore/Train-Smart-AI.git/static/media/logo.d63d73e53c9c54e23dc9.jpg",
+    "index.html": "/WyattCore/Train-Smart-AI.git/index.html",
+    "main.a0796a8d.css.map": "/WyattCore/Train-Smart-AI.git/static/css/main.a0796a8d.css.map",
+    "main.e8b17c37.js.map": "/WyattCore/Train-Smart-AI.git/static/js/main.e8b17c37.js.map",
+    "453.419a5d54.chunk.js.map": "/WyattCore/Train-Smart-AI.git/static/js/453.419a5d54.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a0796a8d.css",
+    "static/js/main.e8b17c37.js"
+  ]
+}
