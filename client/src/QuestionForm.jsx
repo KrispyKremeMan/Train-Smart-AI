@@ -8,7 +8,7 @@ function QuestionForm() {
     const [is_loading, set_is_loading] = useState(false);
     const [demographic_answers, setAnswers] = useState({});
     const [case_3_answers, set_case_3_answers] = useState({});
-    // const [backend_data, set_backend_data] = useState([{}]);
+    // const [backend_data, set_backend_data] = useState([{}]);//
     const [input_value, set_input_value] = useState("");
     const [question_list, set_question_list] = useState([]);
     const [temp_response, set_temp_response] = useState("");
