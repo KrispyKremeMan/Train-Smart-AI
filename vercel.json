@@ -19,7 +19,7 @@
       "dest": "server/server.js"
     },
     {
-      "src": "/(.*)",
+      "src": "/.*",
       "dest": "client/build/index.html"
     }
   ]
