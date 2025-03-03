@@ -13,7 +13,7 @@ function Plan_Details(){
         }
     },[workout_plan]);
 
-    function Workout_Schedule(){
+    function WORKOUT_SCHEDULE(){
         if(!loaded){return <p>Loading...</p>};
         const [...schedule] = workout_plan.workouts;
 
@@ -55,7 +55,7 @@ function Plan_Details(){
                 <h2>{ workout_plan.intro|| "Loading..."}</h2>
             </div>
             <div className="Workout-plan-instruct">
-                <Workout_Schedule></Workout_Schedule>
+                <WORKOUT_sCHEDULE></WORKOUT_SCHEDULE>
                 <Nutrition></Nutrition>
             </div>
             <div className="Workout-plan-close">
