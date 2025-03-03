@@ -4,7 +4,7 @@ import Plans from './Plans.jsx';
 import About from './About.jsx';
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import QuestionForm from './QuestionForm.jsx';
-import Plan_Details from './Plan_details.jsx';
+import PLAN_DETAILS from './Plan_details.jsx';
 
 
 function App(){
@@ -19,7 +19,7 @@ function App(){
             <Route path='/questionform' element={<QuestionForm />} />
             <Route path="/plans" element={<Plans />} /> 
             <Route path="/about" element={<About />} />
-            <Route path="/plan_details/:id" element={<Plan_Details />} />
+            <Route path="/plan_details/:id" element={<PLAN_DETAILS />} />
         </Routes>
     </Router>
     </>
