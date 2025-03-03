@@ -55,7 +55,7 @@ function Plan_Details(){
                 <h2>{ workout_plan.intro|| "Loading..."}</h2>
             </div>
             <div className="Workout-plan-instruct">
-                <WORKOUT_sCHEDULE></WORKOUT_SCHEDULE>
+                <WORKOUT_SCHEDULE></WORKOUT_SCHEDULE>
                 <Nutrition></Nutrition>
             </div>
             <div className="Workout-plan-close">
