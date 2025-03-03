@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link, useLocation  } from "react-router-dom";
+import { Routes, Route, Link} from "react-router-dom";
 import React from "react";
 import axios from 'axios';
-import Plan_details from "./Plan_details";
+import PLAN_DETAILS from "./Plan_details";
 
 
 function Plans(){
     const [workout_plans, set_workout_plans] = useState([]);
-    const [step, set_step] = useState(1);
-    const [last_response, set_last_response] = useState(null);
+    // const [step, set_step] = useState(1);
+    // const [last_response, set_last_response] = useState(null);
 
     useEffect(() => {
         window.scrollTo(0,0);
@@ -26,7 +26,7 @@ function Plans(){
         }
     };
 
-    function Saved_plans() {
+    function SAVED_PLANS() {
         if(workout_plans == null){
             return <div>Loading....</div>
         }else{
@@ -57,9 +57,9 @@ function Plans(){
             <>
             <div className="saved_plans_container">
                 <h2>Welcome to your Saved Plans!</h2>
-                <Saved_plans/>
+                <SAVED_PLANS/>
                 <Routes>
-                    <Route path="/plan_details/:id" element={<Plan_details />} />
+                    <Route path="/plan_details/:id" element={<PLAN_DETAILS />} />
                 </Routes>
             </div>
             </>
