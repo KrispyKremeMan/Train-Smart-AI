@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-function Plan_details(){
+function Plan_Details(){
     const [loaded, set_loaded] = useState(false);
     const location = useLocation();
     const workout_plan = location.state?.workout;
@@ -13,7 +13,7 @@ function Plan_details(){
         }
     },[workout_plan]);
 
-    function Workout_schedule(){
+    function Workout_Schedule(){
         if(!loaded){return <p>Loading...</p>};
         const [...schedule] = workout_plan.workouts;
 
@@ -32,6 +32,7 @@ function Plan_details(){
     function Nutrition(){
        if(!loaded){return <p>Loading...</p>};
         const[header, ...nutrition] = workout_plan.nutrition;
+        console.log(header);
 
         return (
             <div className="plan_parts_nutrition">
@@ -54,7 +55,7 @@ function Plan_details(){
                 <h2>{ workout_plan.intro|| "Loading..."}</h2>
             </div>
             <div className="Workout-plan-instruct">
-                <Workout_schedule></Workout_schedule>
+                <Workout_Schedule></Workout_Schedule>
                 <Nutrition></Nutrition>
             </div>
             <div className="Workout-plan-close">
@@ -66,4 +67,4 @@ function Plan_details(){
     )
 }
 
-export default Plan_details;
+export default Plan_Details;
