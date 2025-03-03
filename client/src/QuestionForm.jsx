@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
 function QuestionForm() {
     const [step, setStep] = useState(1);
@@ -8,7 +8,7 @@ function QuestionForm() {
     const [is_loading, set_is_loading] = useState(false);
     const [demographic_answers, setAnswers] = useState({});
     const [case_3_answers, set_case_3_answers] = useState({});
-    const [backend_data, set_backend_data] = useState([{}]);
+    // const [backend_data, set_backend_data] = useState([{}]);
     const [input_value, set_input_value] = useState("");
     const [question_list, set_question_list] = useState([]);
     const [temp_response, set_temp_response] = useState("");
@@ -28,22 +28,41 @@ function QuestionForm() {
         setStep(step -1);
     }
 
+    const format_plan = useCallback(() => {
+        console.log("Chat from format : ", chat_response)
+        if(sections === ""){
+            const temp_sections = chat_response
+            .split(/(?:\s?\d\.\s?)/)
+            .filter(part => part.trim() !== "");
+            console.log(temp_sections);
+            set_sections(temp_sections);
+        }
+    }, [chat_response, sections]);
+
+    const format_sections = useCallback(() => {
+        console.log("Pre setting sections: ", sections)
+        set_workouts(sections[1].split('\n'));
+        set_nutrition(sections[2].split('\n'));
+        set_tips(sections[3].split('\n'));
+    }, [sections]);
+
+
     useEffect(() => {
-        if (step == 2) {
-            if(chat_response != ""){
+        if (step === 2) {
+            if(chat_response !== ""){
                 set_temp_response(chat_response)
                 set_question_list(chat_response.split("/"));
                 setStep(step + 1);
             }
         }
         
-        if (step == 3 && chat_response != temp_response){
+        if (step === 3 && chat_response !== temp_response){
             console.log("Demographic: ", demographic_answers);
             console.log("Case 3: ", case_3_answers);
             format_plan();
         }
 
-        if(next && sections != ""){
+        if(next && sections !== ""){
             console.log("Sections: ", sections)
             format_sections();
             set_next(false)
@@ -51,7 +70,7 @@ function QuestionForm() {
         }
         
         
-    },[step, chat_response, sections, next]);
+    },[step, chat_response, sections, next, temp_response, demographic_answers, case_3_answers, format_plan, format_sections]); 
     
 
     const handle_ai_submit = async (e) =>{
@@ -71,6 +90,7 @@ function QuestionForm() {
             body: JSON.stringify({input: temp_ai_input}),
             });
             const response_in_json =  await response.json()
+            console.log("Response: ", response_in_json);
             await fetch_chat_response();
         } catch (error){
             console.log("Error fetching AI response:", error);
@@ -110,6 +130,7 @@ function QuestionForm() {
                 body: JSON.stringify({input: ai_input}),
                 });
                 const response_in_json =  await response.json()
+                console.log("Response: ", response_in_json);
                 await fetch_chat_response();
 
             } catch (error){
@@ -131,23 +152,7 @@ function QuestionForm() {
         final_ai_prompt.current = formatted_string;
     }
 
-    const format_plan = () => {
-        console.log("Chat from format : ", chat_response)
-        if(sections == ""){
-            const temp_sections = chat_response
-            .split(/(?:\s?\d\.\s?)/)
-            .filter(part => part.trim() !== "");
-            console.log(temp_sections);
-            set_sections(temp_sections);
-        }
-    }
-
-    const format_sections = () => {
-        console.log("Pre setting sections: ", sections)
-        set_workouts(sections[1].split('\n'));
-        set_nutrition(sections[2].split('\n'));
-        set_tips(sections[3].split('\n'));
-    }
+   
     
 
     
@@ -159,7 +164,8 @@ function QuestionForm() {
             response => response.json()
             ).then(
             data => {
-                set_backend_data(data);
+                // set_backend_data(data);
+                // console.log("Data: ", backend_data);
                 set_chat_response(data.response);
                 }
             )
@@ -214,8 +220,8 @@ function QuestionForm() {
         window.location.reload();
     }
 
-    function Workout_schedule(){
-        if(!workouts || workouts.length ==0){
+    function WORKOUT_SCHEDULE(){
+        if(!workouts || workouts.length === 0){
             return <div>No Data</div>
         }
         const [...workout] = workouts;
@@ -234,11 +240,11 @@ function QuestionForm() {
 
 
     function Nutrition(){
-        if(!nutrition || nutrition.length ==0){
+        if(!nutrition || nutrition.length === 0){
             return <div>No Data</div>
         }
         const[header, ...nutr] = nutrition;
-
+        console.log(header);
         return (
             <div className="plan_parts_nutrition">
                 <h3>{"Nutrition Plan"}</h3>
@@ -361,7 +367,7 @@ function QuestionForm() {
                         <h2>{sections[0] || "Loading..."}</h2>
                     </div>
                     <div className="Workout-plan-instruct">
-                        <Workout_schedule />
+                        <WORKOUT_SCHEDULE />
                         <Nutrition />
                     </div>
                     <div className="Workout-plan-close">
@@ -372,7 +378,13 @@ function QuestionForm() {
                 </div>
 
                 </>
-            )
+            );
+        default:
+            return (
+                <div>
+                    <h1>Something went wrong</h1>
+                </div>
+            );
     }
 
 }
